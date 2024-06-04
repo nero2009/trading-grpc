@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package trader;
+option go_package = "./trader;trader";
+
+import "google/protobuf/empty.proto";
+
+message TraderRequest{
+  string symbol = 1;
+}
+
+message Trade{
+  string stockSymbol = 1;
+  double price = 2;
+  int64 lastUpdated = 3;
+  string traderName = 4;
+}
+
+message TradeResponse{
+  repeated Trade trades = 1;
+}
+
+service TraderService {
+  rpc GetTradingInfo(google.protobuf.Empty) returns (TradeResponse);
+}
